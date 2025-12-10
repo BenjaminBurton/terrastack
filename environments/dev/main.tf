@@ -6,6 +6,10 @@ terraform {
       source  = "hashicorp/aws"
       version = "~> 5.0"
     }
+    tls = {
+      source  = "hashicorp/tls"
+      version = "~> 4.0"
+    }
   }
 }
 
@@ -47,4 +51,29 @@ module "vpc" {
   tags = {
     Environment = "dev"
   }
+}
+
+# EKS Module
+module "eks" {
+  source = "../../modules/eks"
+
+  cluster_name    = "${var.project_name}-cluster"
+  cluster_version = var.eks_cluster_version
+  environment     = "dev"
+
+  vpc_id             = module.vpc.vpc_id
+  public_subnet_ids  = module.vpc.public_subnet_ids
+  private_subnet_ids = module.vpc.private_subnet_ids
+
+  # Node group configuration
+  desired_size   = var.eks_desired_size
+  max_size       = var.eks_max_size
+  min_size       = var.eks_min_size
+  instance_types = var.eks_instance_types
+
+  tags = {
+    Environment = "dev"
+  }
+
+  depends_on = [module.vpc]
 }
