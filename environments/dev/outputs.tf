@@ -59,3 +59,34 @@ output "configure_kubectl" {
   description = "Command to configure kubectl"
   value       = "aws eks update-kubeconfig --region ${var.aws_region} --name ${module.eks.cluster_id}"
 }
+
+# RDS Outputs
+output "db_endpoint" {
+  description = "RDS endpoint"
+  value       = module.rds.db_endpoint
+}
+
+output "db_address" {
+  description = "RDS hostname"
+  value       = module.rds.db_address
+}
+
+output "db_port" {
+  description = "RDS port"
+  value       = module.rds.db_port
+}
+
+output "db_name" {
+  description = "Database name"
+  value       = module.rds.db_name
+}
+
+output "db_secret_arn" {
+  description = "ARN of Secrets Manager secret with DB credentials"
+  value       = module.rds.db_secret_arn
+}
+
+output "db_connection_from_pod" {
+  description = "Example command to connect from a pod"
+  value       = module.rds.connection_command
+}

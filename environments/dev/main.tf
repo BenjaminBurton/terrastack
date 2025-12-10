@@ -10,6 +10,10 @@ terraform {
       source  = "hashicorp/tls"
       version = "~> 4.0"
     }
+    random = {
+      source  = "hashicorp/random"
+      version = "~> 3.0"
+    }
   }
 }
 
@@ -76,4 +80,29 @@ module "eks" {
   }
 
   depends_on = [module.vpc]
+}
+
+# RDS Module
+module "rds" {
+  source = "../../modules/rds"
+
+  db_identifier              = "${var.project_name}-db"
+  vpc_id                     = module.vpc.vpc_id
+  private_subnet_ids         = module.vpc.private_subnet_ids
+  eks_node_security_group_id = module.eks.node_security_group_id
+
+  db_name                        = var.db_name
+  db_username                    = var.db_username
+  db_engine_version              = var.db_engine_version
+  db_instance_class              = var.db_instance_class
+  db_allocated_storage           = var.db_allocated_storage
+  db_multi_az                    = var.db_multi_az
+  db_backup_retention_period     = var.db_backup_retention_period
+  db_performance_insights_enabled = var.db_performance_insights_enabled
+
+  tags = {
+    Environment = "dev"
+  }
+
+  depends_on = [module.eks]
 }
