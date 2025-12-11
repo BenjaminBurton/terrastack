@@ -1,4 +1,4 @@
-# TerraStack ???????
+# TerraStack
 
 **Production-grade Infrastructure as Code for AWS using Terraform with GitOps principles.**
 
@@ -8,7 +8,7 @@
 
 ---
 
-## ???? Overview
+## Overview
 
 TerraStack demonstrates enterprise-level infrastructure automation with:
 - **Infrastructure as Code** using Terraform modules
@@ -23,18 +23,18 @@ Built by a self-taught DevOps engineer as a portfolio project.
 
 
 **Current Stack:**
-- ??? VPC with public/private subnets (2 AZs)
-- ??? NAT Gateways for private subnet internet
-- ??? EKS Kubernetes cluster (v1.31)
-- ??? Managed node group (2x t3.medium)
-- ??? RDS PostgreSQL (db.t3.micro)
-- ??? GitHub Actions CI/CD (GitOps)
-- ??? Secrets Manager for database credentials
-- ??? Full security groups and IAM roles
+- VPC with public/private subnets (2 AZs)
+- NAT Gateways for private subnet internet
+- EKS Kubernetes cluster (v1.31)
+- Managed node group (2x t3.medium)
+- RDS PostgreSQL (db.t3.micro)
+- GitHub Actions CI/CD (GitOps)
+- Secrets Manager for database credentials
+- Full security groups and IAM roles
 
 ---
 
-## ???? Quick Start
+## Quick Start
 
 ### Prerequisites
 - AWS account with credentials
