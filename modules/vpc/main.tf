@@ -8,6 +8,7 @@ resource "aws_vpc" "main" {
     var.tags,
     {
       Name = "${var.project_name}-vpc"
+      BlogDemo = "github-actions-gitops"
     }
   )
 }
